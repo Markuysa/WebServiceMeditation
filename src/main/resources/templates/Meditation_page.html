@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div sec:authorize="isAuthenticated()">
+        <form method="post">
+            <textarea name="comment" placeholder="Input your comment" cols="30" rows="10"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <p th:text="${meditation_item.description}"></p>
+    <p th:text="${meditation_item.videoURL}"></p>
+    <p th:text="${meditation_item.id}"></p>
+    <p th:text="${meditation_item.imagePATH}"></p>
+    <div th:each="i :${comments}"  class="comments_list">
+        <p th:text="${i.message}"></p>
+    </div>
+</body>
+</html>

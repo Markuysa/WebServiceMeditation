@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/meditations_list_styles.css">
+</head>
+<body>
+    <!-- <div th:each="i :${meditations_list}">
+        <p th:text="${i.description}"></p>
+    </div> -->
+    <div class="wrapper">
+        <div class="header">
+            <div class="main_logo">
+                <img src="/img/icons/Group 2.png" alt="">
+            </div>
+        </div>
+        <div class="main_content">
+            <main>
+                <div class="content_meditations_list" >
+                    <ul class="products" th:each="i :${meditations_list}">
+                        <li class="product-wrapper">
+                            <a href="" class="product">
+                                <div class="meditation_image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="text_info">
+                                    <p class="meditation_description" th:text="${i.description}"></p>
+                                    <div class="product_buttons">
+                                        <button class="add_to_fav_button" href="/html/index.html"><img src="/img/icons/free-icon-heart-shape-14815.png" alt=""></button>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

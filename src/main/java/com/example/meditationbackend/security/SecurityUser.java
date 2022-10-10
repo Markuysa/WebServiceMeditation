@@ -1,17 +1,17 @@
 package com.example.meditationbackend.security;
 
-import com.example.meditationbackend.Models.User;
+import com.example.meditationbackend.Models.authModels.Status;
+import com.example.meditationbackend.Models.authModels.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.transaction.Status;
 import java.util.Collection;
 import java.util.List;
 
 @Data
-public class SecurityUser implements UserDetails{
+public class SecurityUser implements UserDetails {
 
     private final String username;
     private final String password;
@@ -60,14 +60,13 @@ public class SecurityUser implements UserDetails{
         return isActive;
     }
 
-    public static UserDetails fromUser(User user){
+    public static UserDetails fromUser(User user) {
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                user.getStatus().equals(Status.STATUS_ACTIVE),
-                user.getStatus().equals(Status.STATUS_ACTIVE),
-                user.getStatus().equals(Status.STATUS_ACTIVE),
-                user.getStatus().equals(Status.STATUS_ACTIVE),
+                user.getEmail(), user.getPassword(),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
+                user.getStatus().equals(Status.ACTIVE),
                 user.getRole().getAuthorities()
         );
     }

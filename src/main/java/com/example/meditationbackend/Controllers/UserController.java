@@ -1,7 +1,8 @@
 package com.example.meditationbackend.Controllers;
 
 
-import com.example.meditationbackend.Models.USR;
+import com.example.meditationbackend.Models.authModels.USR;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,9 +20,6 @@ public class UserController {
         USERS.add(user);
         USERS.add(user2);
         USERS.add(user3);
-
-
-
     }
 
     @GetMapping
@@ -30,6 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('developers:write')")
     public USR getById(@PathVariable Long id){
 
         return USERS.stream().filter(user -> user.getId().equals(id))
