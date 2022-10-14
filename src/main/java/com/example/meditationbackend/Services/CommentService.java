@@ -25,7 +25,7 @@ public class CommentService {
     }
 
     public void sendListOfComments(Model model,Long id) {
-        List<Comment> commentList= commentRepos.findAll();
+        List<Comment> commentList= commentRepos.findCommentByMeditationId(id);
         model.addAttribute("comments_list",commentList);
     }
 }

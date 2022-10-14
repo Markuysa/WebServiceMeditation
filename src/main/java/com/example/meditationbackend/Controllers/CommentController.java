@@ -2,6 +2,7 @@ package com.example.meditationbackend.Controllers;
 
 import com.example.meditationbackend.Services.CommentService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -14,8 +15,9 @@ public class CommentController {
     }
 
     @PostMapping("/{id}")
-    public void addComment(@RequestParam String comment, @PathVariable Long id){
-
+    public String addComment(@RequestParam String comment, @PathVariable Long id, Model model){
+        commentService.sendListOfComments(model,id);
         commentService.addComment(id,comment);
+        return "redirect:/meditations/" + id;
     }
 }

@@ -16,8 +16,9 @@
     <p th:text="${meditation_item.videoURL}"></p>
     <p th:text="${meditation_item.id}"></p>
     <p th:text="${meditation_item.imagePATH}"></p>
-    <div th:each="i :${comments}"  class="comments_list">
-        <p th:text="${i.message}"></p>
+    <div th:each="i :${comments_list}"  class="comments_list">
+
+        <p th:text="${i.author}"><p th:text="${i.message}"></p></p>
     </div>
 </body>
 </html>

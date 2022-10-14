@@ -1,9 +1,6 @@
 package com.example.meditationbackend.Models;
 
-import com.example.meditationbackend.Models.authModels.USR;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 
@@ -12,20 +9,20 @@ import javax.persistence.*;
 @Table(name="commentsdb")
 public class Comment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     Long Id;
 
     @Column(name = "m_id")
-    Long meditation_id;
+    Long meditationId;
     @Column(name = "message")
     String message;
     @Column(name = "author")
     String author;
 
 
-    public Comment(Long meditation_id, String message, String author) {
-        this.meditation_id = meditation_id;
+    public Comment(Long meditation, String message, String author) {
+        this.meditationId = meditation;
         this.message = message;
         this.author = author;
     }
