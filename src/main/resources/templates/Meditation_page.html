@@ -7,8 +7,8 @@
 
 <body>
     <div sec:authorize="isAuthenticated()">
-        <form method="post">
-            <textarea name="comment" placeholder="Input your comment" cols="30" rows="10"></textarea>
+        <form id = "form" method="post">
+            <textarea id="comment_area" name="comment" placeholder="Input your comment" cols="30" rows="10"></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -16,9 +16,33 @@
     <p th:text="${meditation_item.videoURL}"></p>
     <p th:text="${meditation_item.id}"></p>
     <p th:text="${meditation_item.imagePATH}"></p>
-    <div th:each="i :${comments_list}"  class="comments_list">
-
+    <div th:each="i :${comments_list}"  id="comments_list">
         <p th:text="${i.author}"><p th:text="${i.message}"></p></p>
     </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(function(){
+          $('#form').submit(function (e){
+              e.preventDefault();
+              let data = $(this).serialize();
+              $.ajax({
+                  type: "POST",
+                  url: $(this).attr('href'),
+                  data: data,
+                  success: function (result) {
+                      let object= document.createElement("p");
+                      data = data.substr(8,String(data).length);
+                      object.textContent = data;
+                      alert(data);
+                      const comment_list = document.querySelector("#comments_list");
+                      comment_list.append(object);
+                      let area = document.querySelector("#comment_area");
+                      area.textContent=" ";
+
+                  }
+              });
+            });
+        });
+    </script>
 </body>
 </html>

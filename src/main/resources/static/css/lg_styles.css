@@ -1,5 +1,4 @@
-
-@import url("/resetFile.css");
+@import url("/css/resetFile.css");
 * {
   box-sizing: border-box;
 }

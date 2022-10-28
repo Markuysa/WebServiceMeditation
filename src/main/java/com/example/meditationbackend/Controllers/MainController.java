@@ -11,6 +11,6 @@ public class MainController {
 
     @GetMapping
     public String main_page(){
-        return "greeting";
+        return "index";
     }
 }

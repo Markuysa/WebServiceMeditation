@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 
 
     private final UsersService usersService;
+    @GetMapping("/profile")
+    public String getProfile(){
 
+        return "userProfile";
+    }
     public UserController(UsersService usersService) {
         this.usersService = usersService;
     }
@@ -26,7 +30,7 @@ public class UserController {
         return usersService.getUsers();
     }
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('developers:write')")
+    @PreAuthorize("hasPermission('developers:write')")
     public Optional<User> getById(@PathVariable Long id){
         return usersService.getById(id);
 

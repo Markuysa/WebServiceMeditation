@@ -15,9 +15,10 @@ public class CommentController {
     }
 
     @PostMapping("/{id}")
-    public String addComment(@RequestParam String comment, @PathVariable Long id, Model model){
+    public String addComment(@RequestParam String comment, @RequestParam Long id, Model model){
         commentService.sendListOfComments(model,id);
         commentService.addComment(id,comment);
+
         return "redirect:/meditations/" + id;
     }
 }
