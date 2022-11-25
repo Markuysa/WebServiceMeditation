@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards page</title>
+    <link rel="stylesheet" href="/static/css/form2_styles.css">
+</head>
+<body>
+    <div class="main">
+        <div class="rectangles">
+
+            <li class="rectangle first"></li>
+            <li class="rectangle second"></li>
+            <li class="rectangle third"></li>
+            <li class="rectangle fourth"></li>
+            <li class="rectangle fifth"></li>
+            <li class="rectangle sixth"></li>
+
+        </div>
+
+        <!-- <div class="rectangle first">
+        </div>
+        <div class="rectangle second">
+
+        </div>
+        <div class="rectangle third">
+
+        </div>
+        <div class="rectangle fourth">
+
+        </div>
+        <div class="rectangle fifth">
+
+        </div> -->
+    <div class="form_blur">
+        <div class="form_blur_content">
+            <form method="post" action="/auth/login">
+                <h2>Логин</h2>
+                <div class="input_fields">
+                    <input placeholder = " Почта" type="text" name = "username">
+                    <input placeholder = " Пароль" type="password" name = "password">
+                </div>
+                <div><input type="submit" value="Sign In" class="sign_btn"/></div>
+                <div class="additional_block">
+                    <p>Забыли пароль? <a href="#">Перейти</a></p>
+                    <p>Еще нет аккаунта? <a href="/auth/register">Зарегистрироваться</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- <script src="/js/rectangle_animation.js" ></script> -->
+</body>
+</html>
+

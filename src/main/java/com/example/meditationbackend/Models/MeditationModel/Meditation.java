@@ -20,11 +20,15 @@ public class Meditation {
     @Column(name = "description")
     String description;
 
+    @Column(name = "rating")
+    String rating;
+
     public Meditation(){};
-    public Meditation(String imagePATH, String videoURL, String description) {
+    public Meditation(String imagePATH, String videoURL, String description,String rating) {
         this.imagePATH = imagePATH;
         this.videoURL = videoURL;
         this.description = description;
+        this.rating = rating;
     }
 
     public void setId(Long id) {

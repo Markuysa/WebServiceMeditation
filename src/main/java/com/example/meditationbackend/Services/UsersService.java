@@ -4,13 +4,16 @@ import com.example.meditationbackend.Models.authModels.Roles;
 import com.example.meditationbackend.Models.authModels.Status;
 import com.example.meditationbackend.Models.authModels.User;
 import com.example.meditationbackend.Repos.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsersService {
+public class UsersService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -38,5 +41,10 @@ public class UsersService {
         user.setStatus(Status.ACTIVE);
         System.out.println(user.getLogin()+user.getId()+user.getRole()+user.getStatus());
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

@@ -5,14 +5,12 @@ import com.example.meditationbackend.Models.authModels.Roles;
 import com.example.meditationbackend.Models.authModels.User;
 import com.example.meditationbackend.Repos.MeditationRepository;
 import com.example.meditationbackend.Repos.UserRepository;
-import org.springframework.beans.factory.annotation.Value;
+import com.google.gson.Gson;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -21,15 +19,17 @@ import static java.lang.Math.abs;
 public class MeditationService {
     private final MeditationRepository meditationRepository;
     private final UserRepository userRepository;
-    @Value("${upload.path}")
+    //@Value("${upload.path}")
     private String path;
 
     public MeditationService(MeditationRepository meditationRepository, UserRepository userRepository) {
         this.meditationRepository = meditationRepository;
         this.userRepository = userRepository;
     }
-    public void showAllMeditations(Model model){
-        model.addAttribute("meditations_list",meditationRepository.findAll());
+    public List<Meditation> showAllMeditations(){
+        String json = new Gson().toJson(meditationRepository.findAll());
+        System.out.println(json);
+        return meditationRepository.findAll();
     }
     public void showMeditationById(Model model, Long id){
         Map<String,Roles> roles= Map.of("ADMIN",Roles.ADMIN,"USER",Roles.USER);
@@ -40,27 +40,19 @@ public class MeditationService {
         model.addAttribute("roles",roles);
         model.addAttribute("USER",user);
     }
-    public boolean addNewMeditation(MultipartFile image
-            , String videoURL, String description) throws IOException {
-        if (!image.isEmpty()) {
-            Random random = new Random();
-            String id = abs(random.nextInt()) + "";
-            Meditation meditation = new Meditation(image.getOriginalFilename(), videoURL, description);
-            File dir = new File(path);
-            if (!dir.exists()){
-                dir.mkdir();
-            }
-            String nameOfFile =id + image.getOriginalFilename();
-            image.transferTo(new File(path+'/'+nameOfFile));
-            meditation.setImagePATH(nameOfFile);
-            meditationRepository.save(meditation);
+    public void addNewMeditation(String imageURL
+            , String videoURL, String description, String rating) throws IOException {
 
-        } else {
 
-            return true;
-        }
-        return false;
+        Meditation meditation = new Meditation(imageURL,videoURL,description,rating);
+        meditationRepository.save(meditation);
     }
+    public Object showMeditation(long ID){
+
+        return meditationRepository.findById(ID);
+
+    }
+
     public void addMeditationComment(){
         // Finish this shit
     }
